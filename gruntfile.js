@@ -5,12 +5,12 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
 
 
-        githooks: {
-            all: {
-            // Will run the jshint and test:unit tasks at every commit
-            'pre-commit': 'jshint test:unit',
-            }
-        },
+//        githooks: {
+//            all: {
+//            // Will run the jshint and test:unit tasks at every commit
+//            'pre-commit': 'jshint test:unit',
+//            }
+//        },
 
         // Remove assets that will be overwritten (just to be safe)
         clean: [
@@ -201,7 +201,7 @@ module.exports = function(grunt) {
     });
 
     // Load the plugins.
-    grunt.loadNpmTasks('grunt-githooks');
+//    grunt.loadNpmTasks('grunt-githooks');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-jshint');
