@@ -4,13 +4,27 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
+
+        githooks: {
+            all: {
+            // Will run the jshint and test:unit tasks at every commit
+            'pre-commit': 'jshint test:unit',
+            }
+        },
+
         // Remove assets that will be overwritten (just to be safe)
         clean: [
             // These are managed by Bower and could be updated intermittently
             'fonts/**',
             'js/jquery.min.js',
-            // ModerizR gets custom built each time to search for account for CSS Development
+
+            // Compass only rewrites the .css file if it detects a change...
+            // Can cause issues if youa re going from Dev CSS to Prod CSS.
+            'css/site.css',
+
+            // ModerizR gets custom built each time to for account for CSS Development
             'js/modernizr-custom.js',
+
             // The final output that goes to SalesForce. Will be modified each build
             'src/staticresources/**'
         ],
@@ -187,6 +201,7 @@ module.exports = function(grunt) {
     });
 
     // Load the plugins.
+    grunt.loadNpmTasks('grunt-githooks');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-jshint');
