@@ -1,202 +1,30 @@
 # sf-preprocessing
-With more room at our disposal here, lets break the `gruntfile` down a bit further to gain better undersatnding of what we are accomlishing. In the spirit of open-source, I encourage and would love PRs and issues logged with things we can do to make this better!
+When I first started devloping on Salesforce, I was bummed that the VisualForce development and Deployment workflow didn't lend itself to the preprocessing and FE Architecting techniques being used these days.
 
-- [grunt-contrib-clean](https://github.com/gruntjs/grunt-contrib-clean)
-- [grunt-contrib-copy](https://github.com/gruntjs/grunt-contrib-copy)
-- [grunt-contrib-jshint](https://github.com/gruntjs/grunt-contrib-jshint)
-- [grunt-contrib-compass](https://github.com/gruntjs/grunt-contrib-compass)
-- [grunt-contrib-modernizr](https://github.com/Modernizr/grunt-modernizr)
-- [grunt-contrib-compress](https://github.com/gruntjs/grunt-contrib-compress)
-- [grunt-ant-sfdc](https://github.com/kevinohara80/grunt-ant-sfdc)
+- First we delete the old assets that are about to be overwritten.
 
-The first part is the "wrapper" function, which encapsulates your Grunt configuration.
+- Next we copy any 'non-processed' Bower Components into the directory that will be compressed into the completed Static Resource. When we update Bower components, processing will catch changes to source files and build with the latest juice. There are resources (font files for example) that aren't processed in any way. This is to make sure we always deploy the latest version of these resources.
 
-```javascript
-module.exports = function(grunt) {
-};
-```
+- Next we Lint the custom JS files... At this point it only lints the Node, Bower, and Grunt config files that run the processing. In the future we can/will lint all custom javascript assets.
 
-Within that function we can initialize our configuration object:
+- Next we run Compass, which does all of the CSS Processing, concatenation, and minification.
 
-```javascript
-grunt.initConfig({
-});
-```
+- Next the production CSS file is combed for Modernizr syntax and the custom build is generated.
 
-Next we can read in the project settings from the `package.json` file into the `pkg` property. This allows us to refer to the values of properties within our `package.json` file, as we'll see shortly.
+- Next all of the assets, both processed and static are compressed into the ZIP file and renamed as a '.resource' file.
 
-```javascript
-pkg: grunt.file.readJSON('package.json')
-```
+- Next the meta.xml to match the resource is written.
 
-This leaves us with this so far:
-
-```javascript
-module.exports = function(grunt) {
-  grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json')
-  });
-};
-```
-
-Now we can define configuration for each of the tasks we have. The configuration object for a task lives as a property on the configuration object, that's named the same as the task. So the "concat" task goes in our config object under the "concat" key. Below is my configuration object for the "concat" task.
-
-```javascript
-concat: {
-  options: {
-    // define a string to put between each file in the concatenated output
-    separator: ';'
-  },
-  dist: {
-    // the files to concatenate
-    src: ['src/**/*.js'],
-    // the location of the resulting JS file
-    dest: 'dist/<%= pkg.name %>.js'
-  }
-}
-```
-
-Note how I refer to the `name` property that's in the JSON file. We access this using `pkg.name` as earlier we defined the `pkg` property to be the result of loading the `package.json` file, which is then parsed to a JavaScript object. Grunt has simple template engine to output the values of properties in the configuration object. Here I tell the concat task to concatenate all files that exist within `src/` and end in `.js`.
-
-Now lets configure the uglify plugin, which minifies our JavaScript:
-
-```javascript
-uglify: {
-  options: {
-    // the banner is inserted at the top of the output
-    banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
-  },
-  dist: {
-    files: {
-      'dist/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
-    }
-  }
-}
-```
-
-This tells uglify to create a file within `dist/` that contains the result of minifying the JavaScript files. Here I use `<%= concat.dist.dest %>` so uglify will minify the file that the concat task produces.
-
-The QUnit plugin is really simple to set up. You just need to give it the location of the test runner files, which are the HTML files QUnit runs on.
-
-```javascript
-qunit: {
-  files: ['test/**/*.html']
-},
-```
-
-The JSHint plugin is also very simple to configure:
-
-```javascript
-jshint: {
-  // define the files to lint
-  files: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
-  // configure JSHint (documented at http://www.jshint.com/docs/)
-  options: {
-  	// more options here if you want to override JSHint defaults
-    globals: {
-      jQuery: true,
-      console: true,
-      module: true
-    }
-  }
-}
-```
-
-JSHint simply takes an array of files and then an object of options. These are all [documented on the JSHint site](http://www.jshint.com/docs/). If you're happy with the JSHint defaults, there's no need to redefine them in the Gruntfile.
-
-Finally we have the watch plugin:
-
-```javascript
-watch: {
-  files: ['<%= jshint.files %>'],
-  tasks: ['jshint', 'qunit']
-}
-```
-
-This can be run on the command line with `grunt watch`. When it detects any of the files specified have changed (here, I just use the same files I told JSHint to check), it will run the tasks you specify, in the order they appear.
-
-Finally, we have to load in the Grunt plugins we need. These should have all been installed through npm.
-
-```javascript
-grunt.loadNpmTasks('grunt-contrib-uglify');
-grunt.loadNpmTasks('grunt-contrib-jshint');
-grunt.loadNpmTasks('grunt-contrib-qunit');
-grunt.loadNpmTasks('grunt-contrib-watch');
-grunt.loadNpmTasks('grunt-contrib-concat');
-```
-
-And finally set up some tasks. Most important is the default task:
+- Finally, the Resource and the XML file are deployed to Salesforce.
 
 
-```javascript
-// this would be run by typing "grunt test" on the command line
-grunt.registerTask('test', ['jshint', 'qunit']);
+The test runs I have done in the development of this process usually take between 10 and 13 seconds. Not too shabby. 
 
-// the default task can be run just by typing "grunt" on the command line
-grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
-```
 
-And here's the finished `Gruntfile`:
 
-```javascript
-module.exports = function(grunt) {
 
-  grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
-    concat: {
-      options: {
-        separator: ';'
-      },
-      dist: {
-        src: ['src/**/*.js'],
-        dest: 'dist/<%= pkg.name %>.js'
-      }
-    },
-    uglify: {
-      options: {
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
-      },
-      dist: {
-        files: {
-          'dist/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
-        }
-      }
-    },
-    qunit: {
-      files: ['test/**/*.html']
-    },
-    jshint: {
-      files: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
-      options: {
-        // options here to override JSHint defaults
-        globals: {
-          jQuery: true,
-          console: true,
-          module: true,
-          document: true
-        }
-      }
-    },
-    watch: {
-      files: ['<%= jshint.files %>'],
-      tasks: ['jshint', 'qunit']
-    }
-  });
 
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-qunit');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-concat');
+##Roadmap
 
-  grunt.registerTask('test', ['jshint', 'qunit']);
-
-  grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
-
-};
-```
-
-#Roadmap
-
-#Release History
+##Release History
 
