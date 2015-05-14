@@ -10,27 +10,20 @@ When I first started devloping on Salesforce, I was bummed that the VisualForce 
  
 If you aren't familiar with [MavensMate](http://mavensmate.com/), its worth checking it. It keeps a local copy of your Apex and VisualForce synced with your Salesforce org, allowing you to leverage the power of Sublime Text and the mountains of availble plug-ins.
 
-The default folder structure that Maven's Mate sets up for you upon install lends itself perfectly to running this soulution side-by-side inside a Sublime Text Project with a bit of configuration.
-
+The default folder structure that Maven's Mate sets up for you upon install lends itself perfectly to running this soulution side-by-side inside a Sublime Text Project with a bit of configuration. Maven's Mate adds a folder called `workspaces` to your user folder. Inside that folder it adds another folder called `mavensmate`. When you spin up a new project, it adds a folder containing all its assets here. So at this point this is what we have:
 
 ```
-project
-│   README.md
-│   file001.txt    
+myuserfolder
 │
-└───folder1
-    │   file011.txt
-    │   file012.txt
+└───workspaces
     │
-    ├───subfolder1
-    │   │   file111.txt
-    │   │   file112.txt
-    │   │   ...
-    │
-    └───folder2
-    │   file021.txt
-    │   file022.txt
+    └───mavensmate
+        │
+        └───vf project1
+        │
+        └───vf project2
 ```
+
 
 
  ## What the Gruntfile Does
