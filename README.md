@@ -11,6 +11,7 @@ My standard 'toolkit' for writing VisualForce consists of:
 If you aren't familiar with [MavensMate](http://mavensmate.com/), its worth checking it. It keeps a local copy of your Apex and VisualForce synced with your Salesforce org, allowing you to leverage the power of Sublime Text and the mountains of availble plug-ins.
 
 The default folder structure that Maven's Mate sets up for you upon install lends itself perfectly to running this soulution side-by-side inside a Sublime Text Project with a bit of configuration. Maven's Mate adds a folder called `workspaces` to your user folder. Inside that folder it adds another folder called `mavensmate`. When you spin up a new project, it adds a folder containing all its assets here. So at this point this is what we have:
+
 ```
 myuserfolder
 │
@@ -24,6 +25,7 @@ myuserfolder
 ```
 
 I add another folder called `localdev` to `workspaces` and add a folder (with the same name) for each new Maven's Mate project. A clone of this repo goes there. So now we have this:
+
 ```
 myuserfolder
 │
@@ -45,6 +47,7 @@ myuserfolder
 I use a [Sublime TextProject File](http://www.sublimetext.com/docs/3/projects.html) to configure the project so I can work on both the Salesforce files and local asset source files in the same window. See [this gist](https://gist.github.com/cwgieselman/01abfa30fa05bddb3469) for the syntax used.
 
 When you close the project for the first time, Sublime Text will generate a `<projectname>.sublime-workspace` file that stores app-specific info on the same level as the `<projectname>.sublime-project` file. With this in mind and to keep consistent and predictable pathing in the Project file, I store them in a folder called `sublimeProjects` on the same level as the `workspaces` folder. I drop `<projectname>.sublime-project` into a folder for each project (inside `sublimeProjects`) with the same name as the folders that contain the VF pages and Source Code.
+
 ```
 myuserfolder
 └───sublimeProjects
@@ -106,10 +109,7 @@ $ npm update -g
 
 ```
 $ bower update
-'''
-
-
-
+```
 
 
 
