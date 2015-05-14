@@ -76,13 +76,27 @@ So now when you open the project in Sublime Text the sidebar will display folder
 
 
 ## Dependencies
-I'm not really inventing anything new here, just combining what I view as a set of useful tools to leverage some newer FE technologies in VisualForce development. Some of the tools used have dependencies not explicitly called out in plain site. So a quick list:
+I'm not really inventing anything new here, just combining what I view as a set of useful tools to leverage some newer FE technologies in VisualForce development. Some of the tools used have dependencies not explicitly called out in plain site and will be required to just drop a clone of this repo in a project and go to town... A quick list:
+ - [node.js and npm](https://nodejs.org/) is the technology that the process is built on.
  - [Ruby Gems](https://rubygems.org/), [Compass](http://compass-style.org/install/), and [SASS](http://sass-lang.com/install) are all required to run Compass and compile the CSS
  - [Ant](http://ant.apache.org/index.html) is what is used to Deploy to Salesforce.
 
 (I prefer to manage all this dependencies with [Homebrew](http://brew.sh/))
 
 ## 10,000 feet of Grunt
+At the heart of this process are [Grunt](http://gruntjs.com/) and [Bower](http://bower.io/). Grunt is what actually runs all the tasks we configure. Bower is what we rely on to make sure all of your Front End librabries (and their dependencies) are up to date.
+
+You can read more about the inner workings of Grunt [here](http://gruntjs.com/getting-started). To get us going:
+```
+npm install -g grunt-cli
+```
+
+Same with Bower. [Here](http://bower.io/#getting-started) is a more in-depth read of what is going on. INstall with:
+```
+npm install -g bower
+```
+
+
 
 
 
