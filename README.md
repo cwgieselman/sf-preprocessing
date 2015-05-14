@@ -3,10 +3,10 @@ When I first started devloping on Salesforce, I was bummed that the VisualForce 
 
 ## Overview of my workflow
 My standard 'toolkit' for writing VisualForce consists of:
-1. [Sublime Text 3](http://www.sublimetext.com/) with the [MavensMate](http://mavensmate.com/) Plug-In
-2. [Twitter Bootstrap 3](http://getbootstrap.com/)
-3. [Font Awesome](http://fortawesome.github.io/Font-Awesome/)
-4. [ModernizR](http://modernizr.com/)
+ 1. [Sublime Text 3](http://www.sublimetext.com/) with the [MavensMate](http://mavensmate.com/) Plug-In
+ 2. [Twitter Bootstrap 3](http://getbootstrap.com/)
+ 3. [Font Awesome](http://fortawesome.github.io/Font-Awesome/)
+ 4. [ModernizR](http://modernizr.com/)
  
 If you aren't familiar with [MavensMate](http://mavensmate.com/), its worth checking it. It keeps a local copy of your Apex and VisualForce synced with your Salesforce org, allowing you to leverage the power of Sublime Text and the mountains of availble plug-ins.
 
@@ -77,8 +77,8 @@ So now when you open the project in Sublime Text the sidebar will display folder
 
 ## Dependencies
 I'm not really inventing anything new here, just combining what I view as a set of useful tools to leverage some newer FE technologies in VisualForce development. Some of the tools used have dependencies not explicitly called out in plain site. So a quick list:
-- [Ruby Gems](https://rubygems.org/), [Compass](http://compass-style.org/install/), and [SASS](http://sass-lang.com/install) are all required to run Compass and compile the CSS
-- [Ant](http://ant.apache.org/index.html) is what is used to Deploy to Salesforce.
+ - [Ruby Gems](https://rubygems.org/), [Compass](http://compass-style.org/install/), and [SASS](http://sass-lang.com/install) are all required to run Compass and compile the CSS
+ - [Ant](http://ant.apache.org/index.html) is what is used to Deploy to Salesforce.
 
 (I prefer to manage all this dependencies with [Homebrew](http://brew.sh/))
 
