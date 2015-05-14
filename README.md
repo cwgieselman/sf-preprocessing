@@ -5,8 +5,7 @@ When I first started devloping on Salesforce, I was bummed that the VisualForce 
 I'm not really inventing anything new here, just combining what I view as a set of useful tools to leverage some newer FE technologies in VisualForce development. Some of the tools used have dependencies not explicitly called out in plain site. So a quick list:
 - [Ruby Gems](https://rubygems.org/), [Compass](http://compass-style.org/install/), and [SASS](http://sass-lang.com/install) are all required to run Compass and compile the CSS
 - [Ant](http://ant.apache.org/index.html) is what is used to Deploy to Salesforce.
-
-I prefer to manage all this dependencies with [Homebrew](http://brew.sh/)
+(I prefer to manage all this dependencies with [Homebrew](http://brew.sh/))
 
 ## Overview of my workflow
 My standard 'toolkit' for writing VisualForce consists of:
