@@ -1,7 +1,7 @@
 # sf-preprocessing
 When I first started devloping on Salesforce, I was bummed that the VisualForce development and Deployment workflow didn't lend itself to the preprocessing and automation techniques being used these days. Using what I know about 'Modern' Front End Architecture and what I was learning about VisualForce, along with some of the sweet Grunt Plug-ins out there, I came up with this solution to build and deploy a complete set of processed Front End assets to a Salesforce org.
 
- ## Overview of my workflow
+## Overview of my workflow
  My standard 'toolkit' for writing VisualForce consists of:
  1. [Sublime Text 3](http://www.sublimetext.com/) with the [MavensMate](http://mavensmate.com/) Plug-In
  2. [Twitter Bootstrap 3](http://getbootstrap.com/)
@@ -24,9 +24,27 @@ myuserfolder
         └───vf project2
 ```
 
+I simply add another folder called `localdev` to `workspaces` and add a folder (with the same name) for each new Maven's Mate project. A clone of this repo goes there. So now we have this:
+```
+myuserfolder
+│
+└───workspaces
+    │
+    └───mavensmate
+    │   │
+    │   └───vf project1
+    │   │
+    │   └───vf project2
+    │   
+    └───localdev
+        │
+        └───vf project1
+        │
+        └───vf project2
+```
 
 
- ## What the Gruntfile Does
+## What the Gruntfile Does
 - First we delete the old assets that are about to be overwritten.
 
 - Next we copy any 'non-processed' Bower Components into the directory that will be compressed into the completed Static Resource. When we update Bower components, processing will catch changes to source files and build with the latest juice. There are resources (font files for example) that aren't processed in any way. This is to make sure we always deploy the latest version of these resources.
