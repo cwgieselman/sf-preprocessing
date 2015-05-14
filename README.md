@@ -88,13 +88,25 @@ At the heart of this process are [Grunt](http://gruntjs.com/) and [Bower](http:/
 
 You can read more about the inner workings of Grunt [here](http://gruntjs.com/getting-started). To get us going:
 ```
-npm install -g grunt-cli
+$ npm install -g grunt-cli
 ```
 
-Same with Bower. [Here](http://bower.io/#getting-started) is a more in-depth read of what is going on. INstall with:
+Same with Bower. [Here](http://bower.io/#getting-started) is a more in-depth read on what is going on. Install with:
 ```
-npm install -g bower
+$ npm install -g bower
 ```
+
+
+
+```
+$ npm update -g
+```
+
+
+
+```
+$ bower update
+'''
 
 
 
