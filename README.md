@@ -1,12 +1,6 @@
 # sf-preprocessing
 When I first started devloping on Salesforce, I was bummed that the VisualForce development and Deployment workflow didn't lend itself to the preprocessing and automation techniques being used these days. Using what I know about 'Modern' Front End Architecture and what I was learning about VisualForce, along with some of the sweet Grunt Plug-ins out there, I came up with this solution to build and deploy a complete set of processed Front End assets to a Salesforce org.
 
-## Dependencies
-I'm not really inventing anything new here, just combining what I view as a set of useful tools to leverage some newer FE technologies in VisualForce development. Some of the tools used have dependencies not explicitly called out in plain site. So a quick list:
-- [Ruby Gems](https://rubygems.org/), [Compass](http://compass-style.org/install/), and [SASS](http://sass-lang.com/install) are all required to run Compass and compile the CSS
-- [Ant](http://ant.apache.org/index.html) is what is used to Deploy to Salesforce.
-(I prefer to manage all this dependencies with [Homebrew](http://brew.sh/))
-
 ## Overview of my workflow
 My standard 'toolkit' for writing VisualForce consists of:
 1. [Sublime Text 3](http://www.sublimetext.com/) with the [MavensMate](http://mavensmate.com/) Plug-In
@@ -80,7 +74,23 @@ myuserfolder
 
 So now when you open the project in Sublime Text the sidebar will display folders and there contained files for you to open, edit, move, whatever you need to do. I find it handy to be able to look at everything all in one window.
 
-## What the Gruntfile Does
+
+## Dependencies
+I'm not really inventing anything new here, just combining what I view as a set of useful tools to leverage some newer FE technologies in VisualForce development. Some of the tools used have dependencies not explicitly called out in plain site. So a quick list:
+- [Ruby Gems](https://rubygems.org/), [Compass](http://compass-style.org/install/), and [SASS](http://sass-lang.com/install) are all required to run Compass and compile the CSS
+- [Ant](http://ant.apache.org/index.html) is what is used to Deploy to Salesforce.
+
+(I prefer to manage all this dependencies with [Homebrew](http://brew.sh/))
+
+## 10,000 feet of Grunt
+
+
+
+
+## What this actually does
+
+
+
 - First we delete the old assets that are about to be overwritten.
 
 - Next we copy any 'non-processed' Bower Components into the directory that will be compressed into the completed Static Resource. When we update Bower components, processing will catch changes to source files and build with the latest juice. There are resources (font files for example) that aren't processed in any way. This is to make sure we always deploy the latest version of these resources.
