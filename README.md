@@ -86,7 +86,7 @@ I'm not really inventing anything new here, just combining what I view as a set 
 
 (I prefer to manage all this dependencies with [Homebrew](http://brew.sh/))
 
-## 10,000 feet of Grunt
+## Grunt & Bower from 10,000 feet
 At the heart of this process are [Grunt](http://gruntjs.com/) and [Bower](http://bower.io/). Grunt is what actually runs all the tasks we configure. Bower is what we rely on to make sure all of your Front End librabries (and their dependencies) are up to date.
 
 You can read more about the inner workings of Grunt [here](http://gruntjs.com/getting-started). To get us going:
@@ -110,6 +110,15 @@ and the Bower Libraries with:
 ```
 $ bower update
 ```
+
+At this point we have everything in place to do some actual development work. A little bit of configuration and we are ready to make our first deployment.
+
+Open `gruntfile.js` and scroll to Line 176. Here we fill out an array of credentials for the project's Salesforce org. If you are using the folder structure I laied out above, no other configuration is necessary. 
+
+
+## Using it in a project
+
+
 
 
 
@@ -147,8 +156,8 @@ The test runs I have done in the development of this process usually take betwee
 - v3 - Add `grunt-contrib-requirejs` (or similar)
 
 ##Release History
-- v1.1 (05/15/2015) - Add jshint Painting, simplify Bower pathing, Add Bootstrap Theme partial, Sort devDependencies and dependencies in package.json
-- v1.0 (02/27/2015)- Inital Upload of project
+- v1.1 (05/15/2015) - Add `jshint-stylish`, simplify Bower pathing, add `_bootstrap-theme.scss` partial, sort devDependencies and dependencies in `package.json`
+- v1.0 (02/27/2015)- Inital upload of project
 
 
 
