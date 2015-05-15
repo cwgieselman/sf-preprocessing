@@ -1,18 +1,20 @@
 {
-  "name": "",
-  "description": "",
-  "author": "",
-  "version": "0.0.0",
-  "devDependencies": {
-    "grunt": "^0.4.5",
-    "grunt-ant-sfdc": "^0.2.6",
-    "grunt-contrib-compass": "^1.0.1",
-    "grunt-contrib-compress": "^0.13.0",
-    "grunt-contrib-copy": "^0.7.0",
-    "grunt-contrib-jshint": "~0.10.0",
-    "grunt-contrib-nodeunit": "~0.4.1",
-    "grunt-contrib-uglify": "~0.5.0",
-    "grunt-githooks": "^0.3.1",
-    "grunt-modernizr": "^0.6.0"
-  }
+    "name": "sf-preprocessing",
+    "authors": [
+      "{ "name": "Craig Gieselman", "homepage": "https://github.com/cwgieselman" }"
+    ],
+    "license": "MIT",
+    "devDependencies": {
+        "grunt": "^0.4.5",
+        "grunt-contrib-nodeunit": "~0.4.1",
+
+        "grunt-contrib-clean": "^0.6.0",
+        "grunt-contrib-copy": "^0.7.0",
+        "grunt-contrib-jshint": "~0.10.0",
+        "grunt-contrib-uglify": "~0.5.0",
+        "grunt-contrib-compass": "^1.0.1",
+        "grunt-modernizr": "^0.6.0",
+        "grunt-contrib-compress": "^0.13.0",
+        "grunt-ant-sfdc": "^0.2.6"
+    }
 }

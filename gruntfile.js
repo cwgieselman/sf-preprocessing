@@ -4,27 +4,13 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
-
-//        githooks: {
-//            all: {
-//            // Will run the jshint and test:unit tasks at every commit
-//            'pre-commit': 'jshint test:unit',
-//            }
-//        },
-
         // Remove assets that will be overwritten (just to be safe)
         clean: [
             // These are managed by Bower and could be updated intermittently
             'fonts/**',
             'js/jquery.min.js',
-
-            // Compass only rewrites the .css file if it detects a change...
-            // Can cause issues if youa re going from Dev CSS to Prod CSS.
-            'css/site.css',
-
-            // ModerizR gets custom built each time to for account for CSS Development
+            // ModerizR gets custom built each time to search for account for CSS Development
             'js/modernizr-custom.js',
-
             // The final output that goes to SalesForce. Will be modified each build
             'src/staticresources/**'
         ],
@@ -48,13 +34,6 @@ module.exports = function(grunt) {
                         expand: true,
                         src: ['app/_/bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*'],
                         dest: 'fonts/bootstrap/',
-                        flatten: true
-                    },
-                    // Font Awesome
-                    {
-                        expand: true,
-                        src: ['app/_/bower_components/fontawesome/fonts/*'],
-                        dest: 'fonts/',
                         flatten: true
                     }
                 ]
@@ -85,6 +64,15 @@ module.exports = function(grunt) {
                 'bower.json'
             ]
         },
+
+        // Minify site.js
+        uglify: {
+            my_target: {
+              files: {
+                'js/site.js': ['js/site-dev.js']
+              }
+            }
+          },
 
         // Run Compass to process all .scss includes
         compass: {
@@ -159,9 +147,7 @@ module.exports = function(grunt) {
                 "matchCommunityTests" : true,
 
                 // Have custom Modernizr tests? Add paths to their location here.
-                "customTests" : [
-                    "noncore-tests/forms-placeholder.js"
-                ]
+                "customTests" : []
             }
         },
 
@@ -187,10 +173,10 @@ module.exports = function(grunt) {
             },
             dev1: {
                 options: {
-                    user:      '',
-                    pass:      '',
-                    token:     '',
-                    serverurl: '' // default => https://login.salesforce.com
+                    user:      '<SF Login>',
+                    pass:      '<SF Password>',
+                    token:     '<SF Token',
+                    serverurl: '<SF org URL>'
                 },
                 pkg: {
                     staticresources: ['*']
@@ -201,10 +187,10 @@ module.exports = function(grunt) {
     });
 
     // Load the plugins.
-//    grunt.loadNpmTasks('grunt-githooks');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-modernizr');
     grunt.loadNpmTasks('grunt-contrib-compress');
@@ -218,7 +204,7 @@ module.exports = function(grunt) {
         '<StaticResource xmlns="http://soap.sforce.com/2006/04/metadata">',
         '  <cacheControl>Public</cacheControl>',
         '  <contentType>application/zip</contentType>',
-        '  <description>MyTest Description</description>',
+        '  <description>Static Front End Assets</description>',
         '</StaticResource>'
       ];
       var dest = grunt.template.process('<%= compress.main.options.archive %>') + '-meta.xml';
@@ -231,7 +217,7 @@ module.exports = function(grunt) {
     * - Run Compass with expanded CSS and Line Comments for Debugging
     * -
     */
-    grunt.registerTask('default', ['clean', 'copy', 'jshint:all', 'compass:dev', 'modernizr', 'compress', 'write-meta']);
+    grunt.registerTask('default', ['clean', 'copy', 'jshint:all', 'uglify', 'compass:dev', 'modernizr', 'compress', 'write-meta']);
 
     /**
     * Task: Development build of Static Resources
@@ -239,7 +225,7 @@ module.exports = function(grunt) {
     * - Run Compass with expanded CSS and Line Comments for Debugging
     * - Deploy Processed CSS File to SFDC as a Static Resource
     */
-    grunt.registerTask('dev', ['clean', 'copy', 'jshint:all', 'compass:dev', 'modernizr', 'compress', 'write-meta', 'antdeploy']);
+    grunt.registerTask('dev', ['clean', 'copy', 'jshint:all', 'uglify', 'compass:dev', 'modernizr', 'compress', 'write-meta', 'antdeploy']);
 
     /**
     * Task: Production Build of Static Resources
@@ -247,6 +233,6 @@ module.exports = function(grunt) {
     * - Run Compass with minified CSS for Testing and Production
     * - Deploy Processed CSS File to SFDC as a Static Resource
     */
-    grunt.registerTask('prod', ['clean', 'copy', 'jshint:all', 'compass:prod', 'modernizr', 'compress', 'write-meta', 'antdeploy']);
+    grunt.registerTask('prod', ['clean', 'copy', 'jshint:all', 'uglify', 'compass:prod', 'modernizr', 'compress', 'write-meta', 'antdeploy']);
 
 };

@@ -1,3 +1,0 @@
-<apex:page showHeader="false" sidebar="false" standardstylesheets="false" controller="cssProxyController" contentType="text/css">
-    <apex:outputText escape="false" value="{!content}"/>
-</apex:page>
