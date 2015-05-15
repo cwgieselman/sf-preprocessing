@@ -53,6 +53,7 @@ module.exports = function(grunt) {
         // As we build up the JS processing we'll use this more
         jshint: {
             options: {
+                reporter: require('jshint-stylish')
                 es3: true,
                 curly: true,
                 eqeqeq: true,
