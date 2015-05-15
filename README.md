@@ -142,6 +142,13 @@ The test runs I have done in the development of this process usually take betwee
 
 
 ##Roadmap
+- v1.2 - Remove manual copy of Bower assets to output folders and replace with `grunt-bower-copy` (or similar)
+- v2.0 - Insert repo into Yeoman Generator to simplify configuration
+- v3 - Add `grunt-contrib-requirejs` (or similar)
 
 ##Release History
+- v1.1 (05/15/2015) - Add jshint Painting, simplify Bower pathing, Add Bootstrap Theme partial, Sort devDependencies and dependencies in package.json
+- v1.0 (02/27/2015)- Inital Upload of project
+
+
 
