@@ -6,15 +6,17 @@
 // Protip: just comment out the ones you don't want, don't delete them... just in case!
 @import "bootstrap-custom";
 
+// Optional Bootstrap Theme
+// Adds Gradients and whatnot to Bootstrap Elements to make the 'POP!'
+@import "bootstrap-theme";
+
 // Custom Bootstrap variables
 @import "bootstrap-variables";
 
 // Font Awesome
-// Use this partial to pick and choose what parts of Bootstrap CSS you want to leverage
+// Customize what Font Awesome effects you install
 // Protip: just comment out the ones you don't want, just in case!
+// Protip #2: If you use Font Awesome, you should comment out the Glyphicons partial in _bootstrap-custom...
 @import "font-awesome-custom";
 
-// Accessibility Tricks and Practices
-
-
-// Site Specific partials
+// Now add project specific partials!
