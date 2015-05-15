@@ -99,14 +99,14 @@ Same with Bower. [Here](http://bower.io/#getting-started) is a more in-depth rea
 $ npm install -g bower
 ```
 
+After you have all your core dependencies installed, the folder structure in place, and this repo cloned we install the plug-ins and Front End Libraries used. (The repo only includes the `package.json` and `bower.json` files Grunt adn Bower use to store metadata.)
 
-
+Grab the Grunt plug-ins with:
 ```
 $ npm update -g
 ```
 
-
-
+and the Bower Libraries with:
 ```
 $ bower update
 ```
