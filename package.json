@@ -1,10 +1,13 @@
 {
   "name": "sf-preprocessing",
+
   "authors": [
     "Craig Gieselman",
     "githubDOTcomSLASHcwgieselman"
   ],
+
   "license": "MIT",
+
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-ant-sfdc": "^0.2.6",
@@ -14,9 +17,7 @@
     "grunt-contrib-jshint": "~0.10.0",
     "grunt-contrib-nodeunit": "~0.4.1",
     "grunt-contrib-uglify": "~0.5.0",
-    "jshint-stylish": "^1.0.2"
-  },
-  "dependencies": {
+    "jshint-stylish": "^1.0.2",
     "grunt-contrib-compass": "^1.0.1",
     "grunt-modernizr": "^0.6.0"
   }
