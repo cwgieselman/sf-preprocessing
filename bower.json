@@ -1,16 +1,14 @@
 {
     "name": "sf-preprocessing",
     "authors": [
-        "{ "name": "Craig Gieselman", "homepage": "githubDOTcomSLASHcwgieselman" }"
+        "Craig Gieselman", "githubDOTcomSLASHcwgieselman"
     ],
     "license": "MIT",
     "private": true,
     "dependencies": {
         "jquery": "^1",
-        "jquery-legacy": "jquery#^1",
         "bootstrap-sass-official": "~3.3.3",
         "modernizr": "~2.8.3",
-        "fontawesome": "~4.3.0",
-        "jquery-validation": "~1.13.1"
+        "fontawesome": "~4.3.0"
     }
 }

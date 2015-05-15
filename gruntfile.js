@@ -9,8 +9,10 @@ module.exports = function(grunt) {
             // These are managed by Bower and could be updated intermittently
             'fonts/**',
             'js/jquery.min.js',
+
             // ModerizR gets custom built each time to search for account for CSS Development
             'js/modernizr-custom.js',
+
             // The final output that goes to SalesForce. Will be modified each build
             'src/staticresources/**'
         ],
@@ -25,15 +27,22 @@ module.exports = function(grunt) {
                     // but in the future we'll want to ake sure we have the latest juice
                     {
                         expand: true,
-                        src: ['app/_/bower_components/jquery-legacy/dist/jquery.min.js'],
+                        src: ['bower_components/jquery/dist/jquery.min.js'],
                         dest: 'js/',
                         flatten: true
                     },
-                    // Bootstrap Glyphicons
+                    // Bootstrap Glyphicons Font Files
                     {
                         expand: true,
-                        src: ['app/_/bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*'],
+                        src: ['bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*'],
                         dest: 'fonts/bootstrap/',
+                        flatten: true
+                    },
+                    // Font Awesome Font Files
+                    {
+                        expand: true,
+                        src: ['bower_components/fontawesome/assets/fonts/*'],
+                        dest: 'fonts/',
                         flatten: true
                     }
                 ]
@@ -65,15 +74,6 @@ module.exports = function(grunt) {
             ]
         },
 
-        // Minify site.js
-        uglify: {
-            my_target: {
-              files: {
-                'js/site.js': ['js/site-dev.js']
-              }
-            }
-          },
-
         // Run Compass to process all .scss includes
         compass: {
             dev: {
@@ -95,7 +95,7 @@ module.exports = function(grunt) {
         modernizr: {
             dist: {
                 // [REQUIRED] Path to the build you're using for development.
-                "devFile" : "app/_/bower_components/modernizr/modernizr.js",
+                "devFile" : "bower_components/modernizr/modernizr.js",
 
                 // Path to save out the built file.
                 "outputFile" : "js/modernizr-custom.js",
