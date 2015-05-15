@@ -65,15 +65,6 @@ module.exports = function(grunt) {
             ]
         },
 
-        // Minify site.js
-        uglify: {
-            my_target: {
-              files: {
-                'js/site.js': ['js/site-dev.js']
-              }
-            }
-          },
-
         // Run Compass to process all .scss includes
         compass: {
             dev: {
@@ -217,7 +208,7 @@ module.exports = function(grunt) {
     * - Run Compass with expanded CSS and Line Comments for Debugging
     * -
     */
-    grunt.registerTask('default', ['clean', 'copy', 'jshint:all', 'uglify', 'compass:dev', 'modernizr', 'compress', 'write-meta']);
+    grunt.registerTask('default', ['clean', 'copy', 'jshint:all', 'compass:dev', 'modernizr', 'compress', 'write-meta']);
 
     /**
     * Task: Development build of Static Resources
@@ -225,7 +216,7 @@ module.exports = function(grunt) {
     * - Run Compass with expanded CSS and Line Comments for Debugging
     * - Deploy Processed CSS File to SFDC as a Static Resource
     */
-    grunt.registerTask('dev', ['clean', 'copy', 'jshint:all', 'uglify', 'compass:dev', 'modernizr', 'compress', 'write-meta', 'antdeploy']);
+    grunt.registerTask('dev', ['clean', 'copy', 'jshint:all', 'compass:dev', 'modernizr', 'compress', 'write-meta', 'antdeploy']);
 
     /**
     * Task: Production Build of Static Resources
@@ -233,6 +224,6 @@ module.exports = function(grunt) {
     * - Run Compass with minified CSS for Testing and Production
     * - Deploy Processed CSS File to SFDC as a Static Resource
     */
-    grunt.registerTask('prod', ['clean', 'copy', 'jshint:all', 'uglify', 'compass:prod', 'modernizr', 'compress', 'write-meta', 'antdeploy']);
+    grunt.registerTask('prod', ['clean', 'copy', 'jshint:all', 'compass:prod', 'modernizr', 'compress', 'write-meta', 'antdeploy']);
 
 };
